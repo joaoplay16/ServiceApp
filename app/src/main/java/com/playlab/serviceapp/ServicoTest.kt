@@ -7,6 +7,8 @@ import android.util.Log
 
 class ServicoTest : Service() {
 
+    val threads= mutableListOf<Worker>()
+
     override fun onBind(intent: Intent?): IBinder? {
         TODO("Not yet implemented")
     }
@@ -22,6 +24,7 @@ class ServicoTest : Service() {
 
         val w = Worker(startId)
         w.start()
+        threads.add(w)
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -45,6 +48,14 @@ class ServicoTest : Service() {
                 Log.i("Script", "COUNT: $count")
             }
             stopSelf(startId)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        threads.map { t ->
+            t.ativo = false
         }
     }
 

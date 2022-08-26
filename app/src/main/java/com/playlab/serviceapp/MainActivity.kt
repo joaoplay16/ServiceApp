@@ -32,38 +32,40 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
+    fun startService(){
+        val it = Intent(this, ServicoTest::class.java)
+        startService(it)
+    }
 
-fun startService(){
-    val it = Intent("SERVICO_TEST")
-    startService(it)
-}
+    fun stopService(){
+        val it = Intent(this, ServicoTest::class.java)
+        stopService(it)
+    }
 
-fun stopService(){
-    val it = Intent("SERVICO_TEST")
-    stopService(it)
-}
 
-@Composable
-fun Greeting() {
-    Column(modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    @Composable
+    fun Greeting() {
+        Column(modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-        Button(onClick = { startService() }) {
-            Text(text = "Start Service")
-        }
+            Button(onClick = { startService() }) {
+                Text(text = "Start Service")
+            }
 
-        Button(onClick = { stopService() }) {
-            Text(text = "Stop Service")
+            Button(onClick = { stopService() }) {
+                Text(text = "Stop Service")
+            }
+        }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        ServiceAppTheme {
+            Greeting()
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ServiceAppTheme {
-        Greeting()
-    }
-}
+

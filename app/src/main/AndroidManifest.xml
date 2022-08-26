@@ -24,6 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="ServicoTest" android:label="ServicoTest"
+            android:exported="false">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="SERVICO_TEST"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
